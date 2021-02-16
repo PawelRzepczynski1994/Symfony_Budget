@@ -52,3 +52,21 @@ expenses:
 create_expenses:
     path: /create_expenses
     controller: App\Controller\CreateExpensesController::index
+editfixed_expenses:
+    path: /editfixed_expenses
+    controller: App\Controller\EditFixedExpensesController::index
+edit_wallet:
+    path: /edit_wallet
+    controller: App\Controller\EditWalletController::index
+editplace_expenses:
+    path: /editplace_expenses
+    controller: App\Controller\EditPlacesExpensesController::index
+editplace_spending:
+    path: /editplace_spending
+    controller: App\Controller\EditPlacesSpendingController::index
+editincome_source:
+    path: /editincome_source
+    controller: App\Controller\EditIncomeSourceController::index
+edit_expenses:
+    path: /edit_expenses
+    controller: App\Controller\EditExpensesController::index

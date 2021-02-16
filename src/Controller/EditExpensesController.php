@@ -4,10 +4,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EditPlacesExpensesController extends AbstractController
+class EditExpensesController extends AbstractController
 {
     /**
-    * @Route("/editplace_expenses", name="editplace_expenses")
+    * @Route("/edit_expenses", name="edit_expenses")
     */
     public function index(){
 
