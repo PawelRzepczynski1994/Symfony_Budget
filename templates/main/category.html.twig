@@ -1,0 +1,8 @@
+<ul class="list-unstyled flex-column pl-3 collapse" id="submenu1" aria-expanded="false">
+  {% if category == NULL %}
+    Brak kategorii!
+  {% endif %}
+  {% for category in category %}
+    <li class="nav-item"><a class="nav-link" href="">{{ category.name|e }}</a></li>
+  {% endfor %}
+</ul>

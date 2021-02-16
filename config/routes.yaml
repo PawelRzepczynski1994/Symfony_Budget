@@ -1,0 +1,54 @@
+index:
+    path: /
+    controller: App\Controller\SecurityController::login
+register:
+    path: /register
+    controller: App\Controller\RegisterController::register
+main:
+    path: /main
+    controller: App\Controller\MainController::index
+create_category:
+    path: /create_category
+    controller: App\Controller\CreateCategoryController::CreateCategory
+info_category:
+    path: /info_create_category
+    controller: App\Controller\CreateCategoryController::CreateCategoryInfo
+category:
+    path: /list_category
+    controller: App\Controller\CategoryController::CategoryView
+create_incomesource:
+    path: /create_incomesource
+    controller: App\Controller\CreateIncomeSourceController::index
+place_spending:
+    path: /place_spending
+    controller: App\Controller\PlaceSpendingController::index
+create_placeexpenses:
+    path: /create_placeexpenses
+    controller: App\Controller\CreatePlaceExpensesController::index
+create_placesspending:
+    path: /create_placesspending
+    controller: App\Controller\CreatePlacesSpendingController::index
+create_wallet:
+    path: /create_wallet
+    controller: App\Controller\CreateWalletController::index
+income_source:
+    path: /income_source
+    controller: App\Controller\IncomeSourceController::index
+place_expenses:
+    path: /place_expenses
+    controller: App\Controller\PlaceExpensesController::index
+wallet:
+    path: /wallet
+    controller: App\Controller\WalletController::index
+fixed_expenses:
+    path: /fixed_expenses
+    controller: App\Controller\FixedExpensesController::index
+createfixed_expenses:
+    path: /createfixed_expenses
+    controller: App\Controller\CreateFixedExpensesController::index
+expenses:
+    path: /expenses
+    controller: App\Controller\ExpensesController::index
+create_expenses:
+    path: /create_expenses
+    controller: App\Controller\CreateExpensesController::index
