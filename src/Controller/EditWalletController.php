@@ -10,7 +10,7 @@ class EditWalletController extends AbstractController
     * @Route("/edit_wallet", name="edit_wallet")
     */
     public function index(){
-
+        return $this->render('main/wallets/editwallets.html.twig');
     }
 
 }

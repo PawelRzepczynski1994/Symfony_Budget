@@ -10,7 +10,7 @@ class EditIncomeSourceController extends AbstractController
     * @Route("/editincome_source", name="editincome_source")
     */
     public function index(){
-
+        return $this->render('main/incomesource/editincomesource.html.twig');
     }
 
 }

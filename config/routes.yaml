@@ -70,3 +70,6 @@ editincome_source:
 edit_expenses:
     path: /edit_expenses
     controller: App\Controller\EditExpensesController::index
+edit_category:
+    path: /edit_category
+    controller: App\Controller\EditCategoryController::index

@@ -11,6 +11,7 @@ class EditPlacesSpendingController extends AbstractController
     */
     public function index(){
 
+        return $this->render('main/placespending/editplacespending.html.twig');
     }
 
 }

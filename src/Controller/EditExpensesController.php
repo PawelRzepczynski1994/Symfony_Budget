@@ -10,6 +10,7 @@ class EditExpensesController extends AbstractController
     * @Route("/edit_expenses", name="edit_expenses")
     */
     public function index(){
+        return $this->render('main/expenses/editexpenses.html.twig');
 
     }
 

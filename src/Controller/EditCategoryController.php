@@ -4,13 +4,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class EditFixedExpensesController extends AbstractController
+class EditCategoryController extends AbstractController
 {
     /**
-    * @Route("/editfixed_expenses", name="editfixed_expenses")
+    * @Route("/edit_category", name="edit_category")
     */
     public function index(){
-
+        
+        return $this->render('main/createcategory/editcreatecategory.html.twig');
     }
 
 }

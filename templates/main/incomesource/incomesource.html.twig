@@ -2,26 +2,8 @@
 
   <div class="col-md-9 col-lg-10 main">
   <!--MAIN -->
-      Portfele <a href="/create_wallet">Stwórz portfel</a>
+      Źródła dochodów <a href="/wallet">Dodaj</a>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name List</th>
-      <th scope="col">Numer konta</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for wallet in wallets %}
-        <tr>
-        <th scope="row">{{wallet.id}}</th>
-        <td>{{wallet.name}}</td>
-        <td>{{wallet.getIdBankAccount}}</td>
-        </tr>
-{% endfor %}
-  </tbody>
-</table>
 
   </div>
   <footer class="container-fluid">

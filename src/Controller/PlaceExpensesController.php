@@ -10,7 +10,7 @@ class PlaceExpensesController extends AbstractController
     * @Route("/place_expenses", name="place_expenses")
     */
     public function index(){
-
+        return $this->render('main/placespending/placeexpenses.html.twig');
     }
 
 }

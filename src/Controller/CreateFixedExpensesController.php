@@ -10,7 +10,7 @@ class CreateFixedExpensesController extends AbstractController
     * @Route("/createfixed_expenses", name="createfixed_expenses")
     */
     public function index(){
-
+        return $this->render('main/fixedexpenses/createfixedexpenses.html.twig');
     }
 
 }
