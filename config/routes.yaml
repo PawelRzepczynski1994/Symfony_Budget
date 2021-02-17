@@ -24,7 +24,7 @@ place_spending:
     controller: App\Controller\PlaceSpendingController::index
 create_placeexpenses:
     path: /create_placeexpenses
-    controller: App\Controller\CreatePlaceExpensesController::index
+    controller: App\Controller\CreatePlacesExpensesController::index
 create_placesspending:
     path: /create_placesspending
     controller: App\Controller\CreatePlacesSpendingController::index
