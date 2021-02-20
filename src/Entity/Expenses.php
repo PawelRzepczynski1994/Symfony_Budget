@@ -43,6 +43,11 @@ class Expenses
     private $description;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $Date;
+
+    /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $amount;
@@ -120,6 +125,18 @@ class Expenses
     public function setAmount(?float $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getDate(): ?int
+    {
+        return $this->Date;
+    }
+
+    public function setDate(int $Date): self
+    {
+        $this->Date = $Date;
 
         return $this;
     }

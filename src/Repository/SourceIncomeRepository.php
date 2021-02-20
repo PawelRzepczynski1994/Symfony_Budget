@@ -19,6 +19,15 @@ class SourceIncomeRepository extends ServiceEntityRepository
         parent::__construct($registry, SourceIncome::class);
     }
 
+    public function countSourcePlace($value)
+    {
+        return $this->createQueryBuilder('c')
+        ->select('COUNT(c.id)')
+        ->andWhere('c.name = :name')
+        ->setParameter('name',$value)
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
     // /**
     //  * @return SourceIncome[] Returns an array of SourceIncome objects
     //  */

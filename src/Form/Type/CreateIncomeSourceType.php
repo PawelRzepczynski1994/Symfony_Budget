@@ -17,8 +17,6 @@ class CreateSourceIncomeType extends AbstractType
         $builder
         ->add('name',TextType::class)
         ->add('description',TextType::class)
-        ->add('amount',MoneyType::class)
-        ->add('date',DateType::class)
         ->add('save',SubmitType::class);
     }
 

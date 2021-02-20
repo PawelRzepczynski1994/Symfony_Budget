@@ -19,6 +19,15 @@ class PlaceExpensesRepository extends ServiceEntityRepository
         parent::__construct($registry, PlaceExpenses::class);
     }
 
+    public function countNamePlace($value)
+    {
+         return $this->createQueryBuilder('c')
+        ->select('COUNT(c.id)')
+        ->andWhere('c.name = :name')
+        ->setParameter('name',$value)
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
     // /**
     //  * @return PlaceExpenses[] Returns an array of PlaceExpenses objects
     //  */

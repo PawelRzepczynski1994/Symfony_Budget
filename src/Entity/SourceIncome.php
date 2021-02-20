@@ -32,16 +32,6 @@ class SourceIncome
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $amount;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $date;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -79,30 +69,6 @@ class SourceIncome
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAmount(): ?float
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(?float $amount): self
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    public function getDate(): ?int
-    {
-        return $this->date;
-    }
-
-    public function setDate(int $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }
