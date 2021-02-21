@@ -1,10 +1,41 @@
- {% include 'main/header.html.twig' %}
+{% include 'main/header.html.twig' %}
 
   <div class="col-md-9 col-lg-10 main">
   <!--MAIN -->
-        <div class="card-block">
-                <h4 class="card-title">Miejsca wydatków <a href="create_placesexpenses">+</a></h4>
-              </div>   
+
+    <div class="card-block">
+        <h4 class="card-title">Miejsca wydatków <a href="create_placesexpenses">+</a></h4>
+    <p class="card-text">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Adres</th>
+      <th scope="col">Numer telefonu</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Opis</th>
+      <th scope="col">Akcja</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for place_expenses in place_expenses %}
+        <tr>
+        <th scope="row">{{place_expenses.id}}</th>
+        <td>{{place_expenses.name}}</td>
+        <td>{{place_expenses.address}}<br>{{place_expenses.address2}}</td>
+        <td>{{place_expenses.NumberPhone}}</td>
+        <td>{{place_expenses.email}}</td>
+        <td>{{place_expenses.description}}</td>
+        <td>Edytuj Usuń</td>
+        </tr>
+{% endfor %}
+  </tbody>
+</table></p>
+              </div>    
+  </div>
+  {% include 'main/footer.html.twig' %}
+
 
   </div>
   {% include 'main/footer.html.twig' %}

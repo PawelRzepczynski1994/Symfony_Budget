@@ -4,7 +4,35 @@
   <!--MAIN -->
               <div class="card-block">
                 <h4 class="card-title">Wydatki stałe <a href="/createfixed_expenses">+</a></h4>
-                <p class="card-text"></p>
+                <p class="card-text">  
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Opis</th>
+      <th scope="col">Kategoria</th>
+      <th scope="col">Miejsce</th>
+      <th scope="col">Portfel</th>
+      <th scope="col">Kwota</th>
+      <th scope="col">Akcja</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for fixed_expenses in fixed_expenses %}
+        <tr>
+        <th scope="row">{{fixed_expenses.id}}</th>
+        <td>{{fixed_expenses.name}}</td>
+        <td>{{fixed_expenses.description}}</td>
+        <td>{{fixed_expenses.cname}}</td>
+        <td>{{fixed_expenses.pename}}</td>
+        <td>{{fixed_expenses.wname}}</td>
+        <td>{{fixed_expenses.amount}}</td>
+        <td>Edytuj Usuń</td>
+        </tr>
+{% endfor %}
+  </tbody>
+</table></p>
               </div>    
 
   </div>

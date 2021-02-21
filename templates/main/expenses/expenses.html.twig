@@ -4,7 +4,35 @@
   <!--MAIN -->
               <div class="card-block">
                 <h4 class="card-title">Wydatki <a href="/create_expenses">+</a></h4>
-                <p class="card-text"></p>
+                <p class="card-text">
+                     <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Opis</th>
+      <th scope="col">Kategoria</th>
+      <th scope="col">Miejsce</th>
+      <th scope="col">Portfel</th>
+      <th scope="col">Kwota</th>
+      <th scope="col">Akcja</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for expenses in expenses %}
+        <tr>
+        <th scope="row">{{expenses.id}}</th>
+        <td>{{expenses.description}}</td>
+        <td>{{expenses.cname}}</td>
+        <td>{{expenses.pename}}</td>
+        <td>{{expenses.wname}}</td>
+        <td>{{expenses.amount}}</td>
+        <td>Edytuj Usuń</td>
+        </tr>
+{% endfor %}
+  </tbody>
+</table> 
+                
+                </p>
               </div>    
 
   </div>

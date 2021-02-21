@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Form\Type\CreateSourceIncomeType;
+use App\Entity\SourceIncome;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -16,8 +16,11 @@ class IncomeSourceController extends AbstractController
     */
     public function index(Request $request,EntityManagerInterface $entityManager,SessionInterface $session): Response
     {
+        $income_source = $this->getDoctrine()->getRepository(SourceIncome::class)->FindBy(['id_user' =>$this->getUser()->getId()]);
 
-        return $this->render('main/incomesource/incomesource.html.twig');
+        return $this->render('main/incomesource/incomesource.html.twig',[
+            'income_source' => $income_source
+        ]);
     }
 
 }

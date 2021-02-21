@@ -2,8 +2,30 @@
 
   <div class="col-md-9 col-lg-10 main">
   <!--MAIN -->
-      Źródła dochodów <a href="/create_incomesource">Dodaj</a>
 
-
+    <div class="card-block">
+        <h4 class="card-title">Źródła dochodów <a href="/create_incomesource">Dodaj</a></h4>
+    <p class="card-text">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Opis</th>
+      <th scope="col">Akcja</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for income_source in income_source %}
+        <tr>
+        <th scope="row">{{income_source.id}}</th>
+        <td>{{income_source.name}}</td>
+        <td>{{income_source.description}}</td>
+        <td>Edytuj Usuń</td>
+        </tr>
+{% endfor %}
+  </tbody>
+</table></p>
+              </div>    
   </div>
   {% include 'main/footer.html.twig' %}

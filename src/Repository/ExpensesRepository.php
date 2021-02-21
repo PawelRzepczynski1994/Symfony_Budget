@@ -18,7 +18,22 @@ class ExpensesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Expenses::class);
     }
-
+    public function ViewExpenses($value): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT fe.*,c.name as cname,pe.name as pename,w.name as wname
+                FROM `expenses` fe
+                INNER JOIN `category` c
+                INNER JOIN `place_expenses` pe
+                INNER JOIN `wallets` w
+                WHERE fe.`id_user` = :id_user AND
+                c.id = fe.id_category AND 
+                pe.id = fe.id_place_expenses AND
+                w.id = fe.id_wallet';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id_user' => $value]);
+        return $stmt->fetchAllAssociative();
+    }
     // /**
     //  * @return Expenses[] Returns an array of Expenses objects
     //  */
