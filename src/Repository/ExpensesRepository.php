@@ -34,6 +34,23 @@ class ExpensesRepository extends ServiceEntityRepository
         $stmt->execute(['id_user' => $value]);
         return $stmt->fetchAllAssociative();
     }
+
+    public function save($object): void
+    {
+        $this->_em->persist($object);
+        $this->_em->flush();
+    }
+
+    public function remove($object): void
+    {
+        $this->_em->remove($object);
+        $this->_em->flush();
+    }
+
+    public function update(): void
+    {
+        $this->_em->flush();
+    }
     // /**
     //  * @return Expenses[] Returns an array of Expenses objects
     //  */

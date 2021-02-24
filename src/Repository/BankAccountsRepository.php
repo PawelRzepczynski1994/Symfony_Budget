@@ -19,6 +19,22 @@ class BankAccountsRepository extends ServiceEntityRepository
         parent::__construct($registry, BankAccounts::class);
     }
 
+    public function save($object): void
+    {
+        $this->_em->persist($object);
+        $this->_em->flush();
+    }
+
+    public function remove($object): void
+    {
+        $this->_em->remove($object);
+        $this->_em->flush();
+    }
+
+    public function update(): void
+    {
+        $this->_em->flush();
+    }
     // /**
     //  * @return BankAccounts[] Returns an array of BankAccounts objects
     //  */

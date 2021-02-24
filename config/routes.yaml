@@ -7,60 +7,84 @@ register:
 main:
     path: /main
     controller: App\Controller\MainController::index
+
 create_category:
     path: /create_category
-    controller: App\Controller\CreateCategoryController::CreateCategory
+    controller: App\Controller\CategoryController::addCategory
 info_category:
     path: /info_create_category
-    controller: App\Controller\CreateCategoryController::CreateCategoryInfo
-category:
-    path: /list_category
-    controller: App\Controller\CategoryController::CategoryView
-create_incomesource:
-    path: /create_incomesource
-    controller: App\Controller\CreateIncomeSourceController::index
-create_placeexpenses:
-    path: /create_placeexpenses
-    controller: App\Controller\CreatePlacesExpensesController::index
-create_wallet:
-    path: /create_wallet
-    controller: App\Controller\CreateWalletController::index
-income_source:
-    path: /income_source
-    controller: App\Controller\IncomeSourceController::index
-place_expenses:
-    path: /place_expenses
-    controller: App\Controller\PlaceExpensesController::index
-wallet:
-    path: /wallet
-    controller: App\Controller\WalletController::index
-fixed_expenses:
-    path: /fixed_expenses
-    controller: App\Controller\FixedExpensesController::index
-createfixed_expenses:
-    path: /createfixed_expenses
-    controller: App\Controller\CreateFixedExpensesController::index
-expenses:
-    path: /expenses
-    controller: App\Controller\ExpensesController::index
-create_expenses:
-    path: /create_expenses
-    controller: App\Controller\CreateExpensesController::index
-editfixed_expenses:
-    path: /editfixed_expenses
-    controller: App\Controller\EditFixedExpensesController::index
-edit_wallet:
-    path: /edit_wallet
-    controller: App\Controller\EditWalletController::index
-editplace_expenses:
-    path: /editplace_expenses
-    controller: App\Controller\EditPlacesExpensesController::index
-editincome_source:
-    path: /editincome_source
-    controller: App\Controller\EditIncomeSourceController::index
-edit_expenses:
-    path: /edit_expenses
-    controller: App\Controller\EditExpensesController::index
+    controller: App\Controller\CategoryController::InfoCategory
 edit_category:
     path: /edit_category
-    controller: App\Controller\EditCategoryController::index
+    controller: App\Controller\CategoryController::editCategory    
+category:
+    path: /list_category
+    controller: App\Controller\CategoryController::viewCategory
+delete_category:
+    path: /delete_category
+    controller: App\Controller\CategoryController::deleteCategory
+
+create_wallet:
+    path: /create_wallet
+    controller: App\Controller\WalletController::addWallet
+wallet:
+    path: /wallet
+    controller: App\Controller\WalletController::viewWallets
+edit_wallet:
+    path: /edit_wallet
+    controller: App\Controller\WalletController::editWallet
+delete_wallet:
+    path: /delete_wallet
+    controller: App\Controller\WalletController::deleteWallet
+
+create_incomesource:
+    path: /create_incomesource
+    controller: App\Controller\IncomeSourceController::addIncomeSource
+income_source:
+    path: /income_source
+    controller: App\Controller\IncomeSourceController::viewIncomeSource
+editincome_source:
+    path: /editincome_source
+    controller: App\Controller\IncomeSourceController::editIncomeSource
+deleteincome_source:
+    path: /deleteincome_source
+    controller: App\Controller\IncomeSourceController::deleteIncomeSource
+
+create_placeexpenses:
+    path: /create_placeexpenses
+    controller: App\Controller\PlaceExpensesController::addPlacesExpenses
+place_expenses:
+    path: /place_expenses
+    controller: App\Controller\PlaceExpensesController::viewPlacesExpenses
+editplace_expenses:
+    path: /editplace_expenses
+    controller: App\Controller\PlaceExpensesController::editPlacesExpenses
+deleteplace_expenses:
+    path: /deleteplace_expenses
+    controller: App\Controller\PlaceExpensesController::deletePlacesExpenses
+
+fixed_expenses:
+    path: /fixed_expenses
+    controller: App\Controller\FixedExpensesController::viewFixedExpenses
+createfixed_expenses:
+    path: /createfixed_expenses
+    controller: App\Controller\FixedExpensesController::addFixedExpenses
+editfixed_expenses:
+    path: /editfixed_expenses
+    controller: App\Controller\FixedExpensesController::editFixedExpenses
+deletefixed_expenses:
+    path: /deletefixed_expenses
+    controller: App\Controller\FixedExpensesController::deleteFixedExpenses
+
+expenses:
+    path: /expenses
+    controller: App\Controller\ExpensesController::viewExpenses
+create_expenses:
+    path: /create_expenses
+    controller: App\Controller\ExpensesController::addExpenses
+edit_expenses:
+    path: /edit_expenses
+    controller: App\Controller\ExpensesController::editExpenses
+delete_expenses:
+    path: /delete_expenses
+    controller: App\Controller\ExpensesController::deleteExpenses

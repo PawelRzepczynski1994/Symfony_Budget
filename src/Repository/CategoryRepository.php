@@ -37,6 +37,23 @@ class CategoryRepository extends ServiceEntityRepository
         ->getQuery()
         ->getSingleScalarResult();
     }   
+
+    public function save($object): void
+    {
+        $this->_em->persist($object);
+        $this->_em->flush();
+    }
+
+    public function remove($object): void
+    {
+        $this->_em->remove($object);
+        $this->_em->flush();
+    }
+
+    public function update(): void
+    {
+        $this->_em->flush();
+    }
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

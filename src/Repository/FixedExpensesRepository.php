@@ -19,6 +19,16 @@ class FixedExpensesRepository extends ServiceEntityRepository
         parent::__construct($registry, FixedExpenses::class);
     }
 
+    public function countNameFixedExpenses($name)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id)')
+            ->andWhere('c.name = :name')
+            ->setParameter('name',$name)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    
     public function ViewFixedExpenses($value): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -34,6 +44,23 @@ class FixedExpensesRepository extends ServiceEntityRepository
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id_user' => $value]);
         return $stmt->fetchAllAssociative();
+    }
+
+    public function save($object): void
+    {
+        $this->_em->persist($object);
+        $this->_em->flush();
+    }
+
+    public function remove($object): void
+    {
+        $this->_em->remove($object);
+        $this->_em->flush();
+    }
+
+    public function update(): void
+    {
+        $this->_em->flush();
     }
     // /**
     //  * @return FixedExpenses[] Returns an array of FixedExpenses objects
