@@ -4,11 +4,16 @@ namespace App\Service;
 use App\Entity\Expenses;
 use App\Repository\ExpensesRepository;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class CreateExpenses{
     private ExpensesRepository $expensesRepository;
-    public function __construct(ExpensesRepository $expensesRepository)
+    private SessionInterface $session;
+
+    public function __construct(ExpensesRepository $expensesRepository,SessionInterface $session)
     {
         $this->expensesRepository = $expensesRepository;
+        $this->session = $session;
     }
 
     public function create($user,$data)
@@ -22,6 +27,7 @@ class CreateExpenses{
         $expense->setDescription($data["description"]);
         $expense->setAmount($data["amount"]);
         $this->expensesRepository->save($expense);
+        $this->session->set('error', 'Utworzyłeś nowy wydatek!');
         return true;
     }
 }

@@ -15,7 +15,7 @@ class ViewWallet
     
     public function viewWallets($user)
     {
-        $wallets = $this->walletRepository->FindBy($user->getId());
+        $wallets = $this->walletRepository->findbyUserId($user->getId());
         return $wallets;
     }
 }

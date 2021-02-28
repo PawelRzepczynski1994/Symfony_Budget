@@ -53,20 +53,12 @@ class FixedExpensesController extends AbstractController
     */
     public function addFixedExpenses(Request $request)
     {
-        $form = $this->createForm(CreateFixedExpensesType::class);
-        $form->handleRequest($request);
-
+        $form = $this->createForm(CreateFixedExpensesType::class)->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $data = $form->getData();
-            $result = $this->createFixedExpenses->create($this->getUser(),$data);
-            if(!$result)
-            {
-                $this->session->get('error','Posiadasz juz taki wydatek stały!');
+            $result = $this->createFixedExpenses->create($this->getUser(),$form->getData());
+            if($result)
                 return $this->redirectToRoute('info_category');
-            }
-            $this->session->get('error','Utworzyłeś nowy wydatek stały: '.$data["name"]);
-            return $this->redirectToRoute('info_category');
         }
         return $this->render('main/fixedexpenses/createfixedexpenses.html.twig',[
             'form' => $form->createView(),

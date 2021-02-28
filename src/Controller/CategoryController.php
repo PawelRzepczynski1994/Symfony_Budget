@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+
 class CategoryController extends AbstractController
 {
     private CreateCategory $createCategory;
@@ -39,31 +40,23 @@ class CategoryController extends AbstractController
     /**
     * @Route("/list_category", name="category")
     */
-    public function viewCategory(){
-        $user = $this->getUser();
-        $category = $this->viewCategory->viewCategory($user);
+    public function viewCategory()
+    {
+        $category = $this->viewCategory->viewCategory($this->getUser());
         return $this->render('main/category.html.twig',[
             'category' => $category
-            ]);
+        ]);
     }
 
-    public function addCategory(Request $request){
-
-        $form = $this->createForm(CreateCategoryType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {       
-            $data = $form->getData();
-            $result = $this->createCategory->create($this->getUser(),$data);
-            if(!$result){
-                $this->session->set('error', 'Posiadasz już taką kategorię!');
+    public function addCategory(Request $request)
+    {
+        $form = $this->createForm(CreateCategoryType::class)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->createCategory->create($this->getUser(),$form->getData());
+            if($result)
                 return $this->redirectToRoute('info_category');
-            }
-            $this->session->set('error', 'Utworzyłeś nową kategorię:'.$data['namecategory']);
-            return $this->redirectToRoute('info_category');
-        }
-
+        }       
         return $this->render('main/createcategory/create_category.html.twig',[
             'form' => $form->createView(),
         ]);

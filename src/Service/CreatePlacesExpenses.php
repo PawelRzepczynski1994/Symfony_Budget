@@ -5,13 +5,17 @@ namespace App\Service;
 use App\Entity\PlaceExpenses;
 use App\Repository\PlaceExpensesRepository;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class CreatePlacesExpenses
 {
     private PlaceExpensesRepository $placeexpensesRepository;
+    private SessionInterface $session;
 
-    public function __construct(PlaceExpensesRepository $placeexpensesRepository)
+    public function __construct(PlaceExpensesRepository $placeexpensesRepository,SessionInterface $session)
     {
         $this->placeexpensesRepository = $placeexpensesRepository;
+        $this->session = $session;
     }
 
     public function create($user,$data)
@@ -19,6 +23,7 @@ class CreatePlacesExpenses
         $placeexpenses = $this->placeexpensesRepository->countNamePlace($data['name']);
         if($placeexpenses != 0)
         {
+            $this->session->get('error','Posiadasz już takie miejsce wydatków!');
             return false;
         }
         $new_place = new PlaceExpenses();
@@ -30,6 +35,7 @@ class CreatePlacesExpenses
         $new_place->setEmail($data["email"]);
         $new_place->setDescription($data["description"]);
         $this->placeexpensesRepository->save($new_place);
+        $this->session->set('error', 'Utworzyłeś nowe miejsce wydatków:'.$data["name"]);
         return true;
     }
 }

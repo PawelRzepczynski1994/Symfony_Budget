@@ -18,7 +18,15 @@ class WalletsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Wallets::class);
     }
-
+    
+    public function findbyUserId($userId)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id_user = :userId')
+            ->setParameter('userId',$userId)
+            ->getQuery()
+            ->getResult();
+    }
     public function countNumberWallets($name)
     {
         return $this->createQueryBuilder('w')

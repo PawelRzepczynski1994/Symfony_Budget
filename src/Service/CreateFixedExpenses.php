@@ -4,12 +4,17 @@ namespace App\Service;
 use App\Entity\FixedExpenses;
 use App\Repository\FixedExpensesRepository;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class CreateFixedExpenses
 {
     private FixedExpensesRepository $fixedexpensesRepository;
-    public function __construct(FixedExpensesRepository $fixedexpensesRepository)
+    private SessionInterface $session;
+
+    public function __construct(FixedExpensesRepository $fixedexpensesRepository,SessionInterface $session)
     {
         $this->fixedexpensesRepository = $fixedexpensesRepository;
+        $this->session = $session;
     }
 
     public function create($user,$data)
@@ -17,6 +22,7 @@ class CreateFixedExpenses
         $fixedexpenses = $this->fixedexpensesRepository->countNameFixedExpenses($data["name"]);
         if($fixedexpenses != 0)
         {
+            $this->session->get('error','Posiadasz juz taki wydatek stały!');
             return false;
         }
         $expense = new FixedExpenses();
@@ -31,6 +37,7 @@ class CreateFixedExpenses
         $expense->setAmount($data["amount"]);
         $expense->setActive($data["active"]);
         $this->fixedexpensesRepository->save($expense);
+        $this->session->get('error','Utworzyłeś nowy wydatek stały: '.$data["name"]);
         return true;
     }
 }

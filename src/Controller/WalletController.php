@@ -51,20 +51,12 @@ class WalletController extends AbstractController
     */
     public function addWallet(Request $request)
     {
-        $form = $this->createForm(CreateWalletType::class);
-        $form->handleRequest($request);
-
+        $form = $this->createForm(CreateWalletType::class)->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $data = $form->getData();
-            $result = $this->createWallet->create($this->getUser(),$data);
-            if(!$result)
-            {
-                $this->session->set('error','Posiadasz już taki portfel!');
-                return $this->redirectToRoute('info_category');
-            }
-            $this->session->set('error','Utworzyłeś nowy portfel:'.$data['namewallet']);
-            return $this->redirectToRoute('info_category');
+            $result = $this->createWallet->create($this->getUser(),$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category'); 
         }
         return $this->render('main/createcategory/create_category.html.twig',[
             'form' => $form->createView(),

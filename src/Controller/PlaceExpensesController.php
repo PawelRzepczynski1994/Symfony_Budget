@@ -50,20 +50,12 @@ class PlaceExpensesController extends AbstractController
     */
     public function addPlacesExpenses(Request $request)
     {
-        $form = $this->createForm(CreatePlaceExpensesType::class);
-        $form->handleRequest($request);
-
+        $form = $this->createForm(CreatePlaceExpensesType::class)->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $data = $form->getData();
-            $result = $this->createPlacesExpenses->create($this->getUser(),$data);
-            if(!$result)
-            {
-                $this->session->get('error','Posiadasz już takie miejsce wydatków!');
+            $result = $this->createPlacesExpenses->create($this->getUser(),$form->getData());
+            if($result)
                 return $this->redirectToRoute('info_category');
-            }
-            $this->session->set('error', 'Utworzyłeś nowe miejsce wydatków:'.$data["name"]);
-            return $this->redirectToRoute('info_category');
         }
         return $this->render('main/placeexpenses/createplaceexpenses.html.twig',[
             'form' => $form->createView(),

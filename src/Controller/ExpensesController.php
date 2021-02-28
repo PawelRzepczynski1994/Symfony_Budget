@@ -49,15 +49,12 @@ class ExpensesController extends AbstractController
 
     public function addExpenses(Request $request)
     {
-        $form = $this->createForm(CreateExpensesType::class);
-        $form->handleRequest($request);
-
+        $form = $this->createForm(CreateExpensesType::class)->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $data = $form->getData();
-            $result = $this->createExpenses->create($this->getUser(),$data);
-            $this->session->set('error', 'Utworzyłeś nowy wydatek!');
-            return $this->redirectToRoute('info_category');
+            $result = $this->createExpenses->create($this->getUser(),$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
         }
         return $this->render('main/expenses/createexpenses.html.twig',[
             'form' => $form->createView(),

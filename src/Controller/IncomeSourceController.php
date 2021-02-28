@@ -48,20 +48,12 @@ class IncomeSourceController extends AbstractController
     }
     public function addIncomeSource(Request $request)
     {
-        $form = $this->createForm(CreateSourceIncomeType::class);
-        $form->handleRequest($request);
-
+        $form = $this->createForm(CreateSourceIncomeType::class)->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $data = $form->getData();
-            $result = $this->createIncomeSource->create($this->getUser(),$data);
-            if(!$result)
-            {
-                $this->session->set('error','Posiadasz już takie źródło dochodu!');
+            $result = $this->createIncomeSource->create($this->getUser(),$form->getData());
+            if($result)
                 return $this->redirectToRoute('info_category');
-            }
-            $this->session->set('error','Utworzyłeś nowe źródło dochodu:'.$data['name']);
-            return $this->redirectToRoute('info_category');
         }
         return $this->render('main/incomesource/createincomesource.html.twig',[
             'form' => $form->createView(),

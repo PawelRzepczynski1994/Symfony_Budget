@@ -32,6 +32,12 @@ class Category
      */
     private $name;
 
+    public function __construct(int $id_user,string $name)
+    {
+        $this->id_user = $id_user;
+        $this->name = $name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,22 +60,8 @@ class Category
         return $this->id_user;
     }
 
-    public function setIdUser(int $id_user): self
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 }
