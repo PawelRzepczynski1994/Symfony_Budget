@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Expenses;
 use App\Service\CreateExpenses;
 use App\Service\EditExpenses;
 use App\Service\DeleteExpenses;
@@ -61,14 +62,25 @@ class ExpensesController extends AbstractController
         ]);
     }
 
-    public function editExpenses()
+    public function editExpenses(Request $request,Expenses $id)
     {
-
+        $form = $this->createForm(EditExpensesType::class,$id)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->editExpenses->edit($this->getUser(),$id,$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
+        }
+        return $this->render('main/expenses/editexpenses.html.twig',[
+            'form' => $form,
+        ]);
     }
 
-    public function deleteExpenses()
+    public function deleteExpenses($id)
     {
-
+        $id = (int)$id;
+        $this->deleteExpenses->delete($this->getUser(),$id);
+        return $this->redirectToRoute('info_category');
     }
 }
 ?>

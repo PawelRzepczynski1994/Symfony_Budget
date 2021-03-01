@@ -21,7 +21,7 @@
         <th scope="row">{{income_source.id}}</th>
         <td>{{income_source.name}}</td>
         <td>{{income_source.description}}</td>
-        <td>Edytuj Usuń</td>
+            <td><a href="/editincome_source/{{ income_source.id }}">Edytuj</a> <a href="/deleteincome_source/{{ income_source.id }}">Usuń</a></td>
         </tr>
 {% endfor %}
   </tbody>

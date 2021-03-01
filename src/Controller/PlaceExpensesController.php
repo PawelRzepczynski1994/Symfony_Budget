@@ -1,12 +1,16 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\PlaceExpensesRepository;
 use App\Service\CreatePlacesExpenses;
 use App\Service\EditPlacesExpenses;
 use App\Service\DeletePlacesExpenses;
 use App\Service\ViewPlacesExpenses;
 
 use App\Form\Type\CreatePlaceExpensesType;
+use App\Form\Type\EditPlaceExpensesType;
+
+use App\Entity\PlaceExpenses;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -62,13 +66,24 @@ class PlaceExpensesController extends AbstractController
         ]);
     }
     
-    public function editPlacesExpenses()
+    public function editPlacesExpenses(Request $request,PlaceExpenses $id)
     {
-
+        $form = $this->createForm(EditPlaceExpensesType::class,$id)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->editPlacesExpenses->edit($this->getUser(),$id,$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
+        }
+        return $this->render('main/placeexpenses/editplaceexpenses.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
-    public function deletePlacesExpenses()
+    public function deletePlacesExpenses($id)
     {
-
+        $id = (int)$id;
+        $this->deletePlacesExpenses->delete($this->getUser(),$id);
+        return $this->redirectToRoute('info_category');
     }
 
 }

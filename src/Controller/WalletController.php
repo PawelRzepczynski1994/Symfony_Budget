@@ -7,6 +7,9 @@ use App\Service\DeleteWallet;
 use App\Service\ViewWallet;
 
 use App\Form\Type\CreateWalletType;
+use App\Form\Type\EditWalletType;
+
+use App\Entity\Wallets;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,7 +41,8 @@ class WalletController extends AbstractController
     /**
     * @Route("/wallet", name="wallet")
     */
-    public function viewWallets(){
+    public function viewWallets()
+    {
         $user = $this->getUser();
         $wallets = $this->viewWallet->viewWallets($user);
         return $this->render('main/wallets/wallets.html.twig',[
@@ -58,15 +62,34 @@ class WalletController extends AbstractController
             if($result)
                 return $this->redirectToRoute('info_category'); 
         }
-        return $this->render('main/createcategory/create_category.html.twig',[
+        return $this->render('main/wallets/createwallets.html.twig',[
             'form' => $form->createView(),
         ]);
     }
-    public function editWallet(){
-
+    /**
+     * @Route("/edit_wallet/{id}", name="edit_wallet")
+     */
+    public function editWallet(Request $request,Wallets $id)
+    {
+        $form = $this->createForm(EditWalletType::class,$id)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->editWallet->edit($this->getUser(),$id,$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
+        }
+        return $this->render('main/wallets/editwallets.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
-
-    public function deleteWallet(){
+    /**
+     * @Route("/delete_wallet/{id}", name="delete_wallet")
+     */
+    public function deleteWallet($id)
+    {
+            $id = (int)$id;
+            $this->deleteWallet->delete($this->getUser(), $id);
+            return $this->redirectToRoute('info_category');
 
     }
 }

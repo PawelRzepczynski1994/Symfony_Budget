@@ -27,7 +27,7 @@
         <td>{{place_expenses.NumberPhone}}</td>
         <td>{{place_expenses.email}}</td>
         <td>{{place_expenses.description}}</td>
-        <td>Edytuj Usuń</td>
+            <td><a href="/editplace_expenses/{{ place_expenses.id }}">Edytuj</a> <a href="/deleteplace_expenses/{{ place_expenses.id }}">Usuń</a></td>
         </tr>
 {% endfor %}
   </tbody>

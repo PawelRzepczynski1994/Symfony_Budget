@@ -1,12 +1,14 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\SourceIncome;
 use App\Service\CreateIncomeSource;
 use App\Service\EditIncomeSource;
 use App\Service\DeleteIncomeSource;
 use App\Service\ViewIncomeSource;
 
 use App\Form\Type\CreateSourceIncomeType;
+use App\Form\Type\EditSourceIncomeType;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -60,14 +62,25 @@ class IncomeSourceController extends AbstractController
         ]);
     }
 
-    public function editIncomeSource()
+    public function editIncomeSource(Request $request,SourceIncome $id)
     {
-
+        $form = $this->createForm(EditSourceIncomeType::class,$id)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->editIncomeSource->edit($this->getUser(),$id,$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
+        }
+        return $this->render('main/incomesource/editincomesource.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 
-    public function deleteIncomeSource()
+    public function deleteIncomeSource($id)
     {
-
+        $id = (int)$id;
+        $this->deleteIncomeSource->delete($this->getUser(),$id);
+        return $this->redirectToRoute('info_category');
     }
 
 

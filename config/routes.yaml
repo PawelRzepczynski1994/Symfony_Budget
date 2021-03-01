@@ -15,13 +15,13 @@ info_category:
     path: /info_create_category
     controller: App\Controller\CategoryController::InfoCategory
 edit_category:
-    path: /edit_category
+    path: /edit_category/{id}
     controller: App\Controller\CategoryController::editCategory    
 category:
     path: /list_category
     controller: App\Controller\CategoryController::viewCategory
 delete_category:
-    path: /delete_category
+    path: /delete_category/{id}
     controller: App\Controller\CategoryController::deleteCategory
 
 create_wallet:
@@ -31,10 +31,10 @@ wallet:
     path: /wallet
     controller: App\Controller\WalletController::viewWallets
 edit_wallet:
-    path: /edit_wallet
+    path: /edit_wallet/{id}
     controller: App\Controller\WalletController::editWallet
 delete_wallet:
-    path: /delete_wallet
+    path: /delete_wallet/{id}
     controller: App\Controller\WalletController::deleteWallet
 
 create_incomesource:
@@ -44,10 +44,10 @@ income_source:
     path: /income_source
     controller: App\Controller\IncomeSourceController::viewIncomeSource
 editincome_source:
-    path: /editincome_source
+    path: /editincome_source/{id}
     controller: App\Controller\IncomeSourceController::editIncomeSource
 deleteincome_source:
-    path: /deleteincome_source
+    path: /deleteincome_source/{id}
     controller: App\Controller\IncomeSourceController::deleteIncomeSource
 
 create_placeexpenses:
@@ -57,10 +57,10 @@ place_expenses:
     path: /place_expenses
     controller: App\Controller\PlaceExpensesController::viewPlacesExpenses
 editplace_expenses:
-    path: /editplace_expenses
+    path: /editplace_expenses/{id}
     controller: App\Controller\PlaceExpensesController::editPlacesExpenses
 deleteplace_expenses:
-    path: /deleteplace_expenses
+    path: /deleteplace_expenses/{id}
     controller: App\Controller\PlaceExpensesController::deletePlacesExpenses
 
 fixed_expenses:
@@ -70,10 +70,10 @@ createfixed_expenses:
     path: /createfixed_expenses
     controller: App\Controller\FixedExpensesController::addFixedExpenses
 editfixed_expenses:
-    path: /editfixed_expenses
+    path: /editfixed_expenses/{id}
     controller: App\Controller\FixedExpensesController::editFixedExpenses
 deletefixed_expenses:
-    path: /deletefixed_expenses
+    path: /deletefixed_expenses/{id}
     controller: App\Controller\FixedExpensesController::deleteFixedExpenses
 
 expenses:
@@ -83,8 +83,8 @@ create_expenses:
     path: /create_expenses
     controller: App\Controller\ExpensesController::addExpenses
 edit_expenses:
-    path: /edit_expenses
+    path: /edit_expenses/{id}
     controller: App\Controller\ExpensesController::editExpenses
 delete_expenses:
-    path: /delete_expenses
+    path: /delete_expenses/{id}
     controller: App\Controller\ExpensesController::deleteExpenses
