@@ -9,6 +9,7 @@
 /vendor/
 /composer.lock
 /.vscode
+/.idea
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
