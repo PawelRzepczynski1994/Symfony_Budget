@@ -9,7 +9,6 @@ use App\Service\ViewWallet;
 use App\Form\Type\CreateWalletType;
 use App\Form\Type\EditWalletType;
 
-use App\Entity\Wallets;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

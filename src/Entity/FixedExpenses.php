@@ -23,22 +23,7 @@ class FixedExpenses
     private $id_user;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_category;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_place_expenses;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_wallet;
-
-    /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
     private $first_date;
 
@@ -67,6 +52,28 @@ class FixedExpenses
      */
     private $active;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="id_fixedExpenses")
+     */
+    private $id_category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PlaceExpenses::class, inversedBy="id_fixedExpenses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_places_expenses;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Wallets;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Wallets::class, inversedBy="id_fixedExpenses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_wallet;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,48 +91,12 @@ class FixedExpenses
         return $this;
     }
 
-    public function getIdCategory(): ?int
-    {
-        return $this->id_category;
-    }
-
-    public function setIdCategory(int $id_category): self
-    {
-        $this->id_category = $id_category;
-
-        return $this;
-    }
-
-    public function getIdPlaceExpenses(): ?int
-    {
-        return $this->id_place_expenses;
-    }
-
-    public function setIdPlaceExpenses(int $id_place_expenses): self
-    {
-        $this->id_place_expenses = $id_place_expenses;
-
-        return $this;
-    }
-
-    public function getIdWallet(): ?int
-    {
-        return $this->id_wallet;
-    }
-
-    public function setIdWallet(int $id_wallet): self
-    {
-        $this->id_wallet = $id_wallet;
-
-        return $this;
-    }
-
-    public function getFirstDate(): ?int
+    public function getFirstDate(): ?\DateTime
     {
         return $this->first_date;
     }
 
-    public function setFirstDate(int $first_date): self
+    public function setFirstDate(\DateTime $first_date): self
     {
         $this->first_date = $first_date;
 
@@ -188,6 +159,54 @@ class FixedExpenses
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getIdCategory(): ?Category
+    {
+        return $this->id_category;
+    }
+
+    public function setIdCategory(?Category $id_category): self
+    {
+        $this->id_category = $id_category;
+
+        return $this;
+    }
+
+    public function getIdPlacesExpenses(): ?PlaceExpenses
+    {
+        return $this->id_places_expenses;
+    }
+
+    public function setIdPlacesExpenses(?PlaceExpenses $id_places_expenses): self
+    {
+        $this->id_places_expenses = $id_places_expenses;
+
+        return $this;
+    }
+
+    public function getWallets(): ?string
+    {
+        return $this->Wallets;
+    }
+
+    public function setWallets(string $Wallets): self
+    {
+        $this->Wallets = $Wallets;
+
+        return $this;
+    }
+
+    public function getIdWallet(): ?Wallets
+    {
+        return $this->id_wallet;
+    }
+
+    public function setIdWallet(?Wallets $id_wallet): self
+    {
+        $this->id_wallet = $id_wallet;
 
         return $this;
     }

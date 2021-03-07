@@ -24,7 +24,7 @@ class CreatePlacesExpenses
         if($placeexpenses != 0)
         {
             $this->session->get('error','Posiadasz już takie miejsce wydatków!');
-            return false;
+            return true;
         }
         $new_place = new PlaceExpenses();
         $new_place->setIdUser($user->getId());

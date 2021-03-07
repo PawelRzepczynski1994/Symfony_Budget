@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\SourceIncome;
 use App\Service\CreateIncomeSource;
 use App\Service\EditIncomeSource;
 use App\Service\DeleteIncomeSource;

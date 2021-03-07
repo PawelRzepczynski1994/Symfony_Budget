@@ -28,7 +28,7 @@
         <td>{{fixed_expenses.pename}}</td>
         <td>{{fixed_expenses.wname}}</td>
         <td>{{fixed_expenses.amount}}</td>
-        <td>Edytuj Usuń</td>
+            <td><a href="/editfixed_expenses/{{fixed_expenses.id}}">Edytuj</a> <a href="/deletefixed_expenses/{{fixed_expenses.id}}">Usuń</a></td>
         </tr>
 {% endfor %}
   </tbody>

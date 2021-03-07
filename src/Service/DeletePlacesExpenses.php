@@ -21,7 +21,7 @@ class DeletePlacesExpenses
         if(!$check_placeexpenses AND $check_placeexpenses->getIdUser() != $user)
         {
             $this->session->set('error','Nie możesz skasować tego miejsca wydatku!');
-            return false;
+            return true;
         }
         $this->placeexpensesRepository->remove($check_placeexpenses);
         $this->session->set('error','Miejsce wydatku zostało skasowane!');

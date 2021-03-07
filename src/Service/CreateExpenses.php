@@ -7,6 +7,7 @@ use App\Repository\ExpensesRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CreateExpenses{
+
     private ExpensesRepository $expensesRepository;
     private SessionInterface $session;
 

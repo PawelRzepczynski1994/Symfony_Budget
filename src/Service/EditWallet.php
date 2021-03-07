@@ -22,7 +22,7 @@ class EditWallet
         $check_wallet = $this->walletsRepository->findOneById(['id' => $id]);
         if(!$check_wallet AND $check_wallet->getIdUser() != $user){
             $this->session->set('error','Nie możesz edytować tego portfela!');
-            return false;
+            return true;
         }
         $check_wallet->setName($data->getName());
         $check_wallet->setIdBankAccount($data->getIdBankAccount());

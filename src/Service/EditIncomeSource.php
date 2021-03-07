@@ -21,7 +21,7 @@ class EditIncomeSource
         $check_source = $this->sourceincomeRepository->findOneBy(['id' => $id]);
         if(!$check_source AND $check_source->getIdUser() != $user){
             $this->session->set('error','Nie możesz edytować tego źródła dochodu!');
-            return false;
+            return true;
         }
         $check_source->setName($data->getName());
         $check_source->setDescription($data->getDescription());

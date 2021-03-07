@@ -22,7 +22,7 @@ class CreateIncomeSource
         if($incomesource != 0)
         {
             $this->session->set('error','Posiadasz już takie źródło dochodu!');
-            return false;
+            return true;
         }
         $source_income = new SourceIncome();
         $source_income->setIdUser($user->getId());

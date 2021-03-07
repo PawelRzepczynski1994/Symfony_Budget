@@ -22,7 +22,7 @@ class EditPlacesExpenses
         if(!$check_placesexpenses AND $check_placesexpenses->getIdUser() != $user)
         {
             $this->session->set('error','Nie możesz edytować miejsca wydatków!');
-            return false;
+            return true;
         }
         $check_placesexpenses->setName($data->getName());
         $check_placesexpenses->setAddress($data->getAddress());

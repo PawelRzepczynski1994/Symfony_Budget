@@ -20,10 +20,10 @@ class CreateFixedExpenses
     public function create($user,$data)
     {
         $fixedexpenses = $this->fixedexpensesRepository->countNameFixedExpenses($data["name"]);
-        if($fixedexpenses != 0)
+        if($fixedexpenses)
         {
-            $this->session->get('error','Posiadasz juz taki wydatek stały!');
-            return false;
+            $this->session->set('error','Posiadasz juz taki wydatek stały!');
+            return true;
         }
         $expense = new FixedExpenses();
         $expense->setName($data["name"]);
@@ -37,7 +37,7 @@ class CreateFixedExpenses
         $expense->setAmount($data["amount"]);
         $expense->setActive($data["active"]);
         $this->fixedexpensesRepository->save($expense);
-        $this->session->get('error','Utworzyłeś nowy wydatek stały: '.$data["name"]);
+        $this->session->set('error','Utworzyłeś nowy wydatek stały: '.$data["name"]);
         return true;
     }
 }

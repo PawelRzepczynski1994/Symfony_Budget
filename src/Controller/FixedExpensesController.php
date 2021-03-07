@@ -1,13 +1,14 @@
 <?php
 namespace App\Controller;
 
-use App\Form\Type\CreateExpensesType;
+
 use App\Service\CreateFixedExpenses;
 use App\Service\EditFixedExpenses;
 use App\Service\DeleteFixedExpenses;
 use App\Service\ViewFixedExpenses;
 
 use App\Form\Type\CreateFixedExpensesType;
+use App\Form\Type\EditFixedExpensesType;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -64,13 +65,24 @@ class FixedExpensesController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    public function editFixedExpenses()
+    public function editFixedExpenses(Request $request,FixedExpenses $id)
     {
-
+        $form = $this->createForm(EditFixedExpensesType::class,$id)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->editFixedExpenses->edit($this->getUser(),$id,$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
+        }
+        return $this->render('main/fixedexpenses/editfixedexpenses.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
-    public function deleteFixedExpenses()
+    public function deleteFixedExpenses($id)
     {
-
+        $id = (int)$id;
+        $this->deleteFixedExpenses->delete($this->getUser(),$id);
+        return $this->redirectToRoute('info_category');
     }
 }
 ?>

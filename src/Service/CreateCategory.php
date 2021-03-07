@@ -22,7 +22,7 @@ class CreateCategory
         if($category != 0)
         {
            $this->session->set('error', 'Posiadasz już taką kategorię!');
-           return false;
+           return true;
         }
         $category = new Category($user->getId(),$data["namecategory"]);
         $this->categoryRepository->save($category);

@@ -26,7 +26,7 @@
         <td>{{expenses.pename}}</td>
         <td>{{expenses.wname}}</td>
         <td>{{expenses.amount}}</td>
-        <td>Edytuj Usuń</td>
+            <td><a href="/edit_expenses/{{expenses.id}}">Edytuj</a> <a href="/delete_expenses/{{expenses.id}}">Usuń</a></td>
         </tr>
 {% endfor %}
   </tbody>

@@ -22,7 +22,7 @@ class CreateWallet
         $wallet = $this->walletsRepository->countNumberWallets($data["namewallet"]);
         if($wallet != 0){
             $this->session->set('error','Posiadasz już taki portfel!');
-            return false;
+            return true;
         }
         $wallet = new Wallets();
         $wallet->setIdUser($user->getId());

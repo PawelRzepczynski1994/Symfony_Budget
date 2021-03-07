@@ -36,7 +36,7 @@ class CategoryRepository extends ServiceEntityRepository
         ->setParameter('name',$name)
         ->getQuery()
         ->getSingleScalarResult();
-    }   
+    }
 
     public function save($object): void
     {

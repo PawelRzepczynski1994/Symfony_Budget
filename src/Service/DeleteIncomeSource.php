@@ -22,7 +22,7 @@ class DeleteIncomeSource
         if(!$check_sourceincome AND $check_sourceincome->getIdUser() != $user)
         {
             $this->session->set('error','Nie możesz skasować tego wydatku stałego!');
-            return false;
+            return true;
         }
         $this->sourceincomeRepository->remove($check_sourceincome);
         $this->session->set('error','Wydatek stały został skasowany!');

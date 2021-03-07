@@ -1,13 +1,13 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Expenses;
 use App\Service\CreateExpenses;
 use App\Service\EditExpenses;
 use App\Service\DeleteExpenses;
 use App\Service\ViewExpenses;
 
 use App\Form\Type\CreateExpensesType;
+use App\Form\Type\EditExpensesType;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -72,7 +72,7 @@ class ExpensesController extends AbstractController
                 return $this->redirectToRoute('info_category');
         }
         return $this->render('main/expenses/editexpenses.html.twig',[
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

@@ -43,9 +43,9 @@ class Expenses
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
-    private $Date;
+    private $date;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -129,14 +129,14 @@ class Expenses
         return $this;
     }
 
-    public function getDate(): ?int
+    public function getDate(): ?\DateTime
     {
-        return $this->Date;
+        return $this->date;
     }
 
-    public function setDate(int $Date): self
+    public function setDate(\DateTime $date): self
     {
-        $this->Date = $Date;
+        $this->date = $date;
 
         return $this;
     }

@@ -77,9 +77,7 @@ class CategoryController extends AbstractController
      */
     public function InfoCategory(SessionInterface $session)
     {
-       
-        $error = $session->get('error');
-        $session->set('error',NULL);
+        $error = $this->session->get('error');
         return $this->render('main/createcategory/error.html.twig',[
             'error_log' => $error,
         ]);

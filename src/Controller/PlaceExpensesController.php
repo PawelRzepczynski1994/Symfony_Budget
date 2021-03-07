@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Repository\PlaceExpensesRepository;
 use App\Service\CreatePlacesExpenses;
 use App\Service\EditPlacesExpenses;
 use App\Service\DeletePlacesExpenses;
@@ -9,8 +8,6 @@ use App\Service\ViewPlacesExpenses;
 
 use App\Form\Type\CreatePlaceExpensesType;
 use App\Form\Type\EditPlaceExpensesType;
-
-use App\Entity\PlaceExpenses;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
