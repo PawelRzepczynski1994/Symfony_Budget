@@ -25,10 +25,10 @@ class CreateWallet
             return true;
         }
         $wallet = new Wallets();
-        $wallet->setIdUser($user->getId());
+        $wallet->setUser($user);
         $wallet->setName($data["namewallet"]);
         $wallet->setDescription($data["description"]);
-        $wallet->setIdBankAccount($data["number_account"]);
+        $wallet->setBankAccount($data["number_account"]);
         $this->walletsRepository->save($wallet);
         $this->session->set('error','Utworzyłeś nowy portfel:'.$data['namewallet']);
         return true;

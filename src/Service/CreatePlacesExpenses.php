@@ -27,7 +27,7 @@ class CreatePlacesExpenses
             return true;
         }
         $new_place = new PlaceExpenses();
-        $new_place->setIdUser($user->getId());
+        $new_place->setUser($user);
         $new_place->setName($data["name"]);
         $new_place->setAddress($data["address_1"]);
         $new_place->setAddress2($data["address_2"]);

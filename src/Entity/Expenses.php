@@ -18,27 +18,7 @@ class Expenses
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_user;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_category;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_place_expenses;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_wallet;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -52,57 +32,33 @@ class Expenses
      */
     private $amount;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="expenses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="expenses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PlaceExpenses::class, inversedBy="expenses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $place_expenses;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Wallets::class, inversedBy="expenses")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $wallets;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser(int $id_user): self
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
-
-    public function getIdCategory(): ?int
-    {
-        return $this->id_category;
-    }
-
-    public function setIdCategory(int $id_category): self
-    {
-        $this->id_category = $id_category;
-
-        return $this;
-    }
-
-    public function getIdPlaceExpenses(): ?int
-    {
-        return $this->id_place_expenses;
-    }
-
-    public function setIdPlaceExpenses(int $id_place_expenses): self
-    {
-        $this->id_place_expenses = $id_place_expenses;
-
-        return $this;
-    }
-
-    public function getIdWallet(): ?int
-    {
-        return $this->id_wallet;
-    }
-
-    public function setIdWallet(int $id_wallet): self
-    {
-        $this->id_wallet = $id_wallet;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -113,6 +69,18 @@ class Expenses
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
@@ -129,14 +97,50 @@ class Expenses
         return $this;
     }
 
-    public function getDate(): ?\DateTime
+    public function getUser(): ?users
     {
-        return $this->date;
+        return $this->user;
     }
 
-    public function setDate(\DateTime $date): self
+    public function setUser(?users $user): self
     {
-        $this->date = $date;
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getPlaceExpenses(): ?placeexpenses
+    {
+        return $this->place_expenses;
+    }
+
+    public function setPlaceExpenses(?placeexpenses $place_expenses): self
+    {
+        $this->place_expenses = $place_expenses;
+
+        return $this;
+    }
+
+    public function getWallets(): ?wallets
+    {
+        return $this->wallets;
+    }
+
+    public function setWallets(?wallets $wallets): self
+    {
+        $this->wallets = $wallets;
 
         return $this;
     }

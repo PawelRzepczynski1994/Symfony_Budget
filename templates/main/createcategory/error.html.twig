@@ -1,11 +1,13 @@
- {% include 'main/header.html.twig' %}
+{% include 'main/header.html.twig' %}
 
-  <div class="col-md-9 col-lg-10 main">
-  <!--MAIN -->
-      
-
-{{ error_log }}
-
-
-  </div>
-  {% include 'main/footer.html.twig' %}
+<div class="col-md-9 col-lg-10 main">
+    <!--MAIN -->
+    {% if error_log is iterable %}
+        {% for error in error_log %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    {% else %}
+    <li>{{ error_log }}</li>
+    {% endif %}
+</div>
+{% include 'main/footer.html.twig' %}

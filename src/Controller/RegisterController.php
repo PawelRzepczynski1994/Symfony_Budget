@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,11 +44,12 @@ class RegisterController extends AbstractController
             $data = $form->getData();
             $user = new Users();
             $user->setUsername($data['username']);
-            $user->setName($data["username"]);
             $user->setEmail($data['email']);
             $user->setPassword(
                 $passEncoder->encodePassword($user,$data['password'])
             );
+            $user->setRegisterTime(time());
+            $user->setActiveTime(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

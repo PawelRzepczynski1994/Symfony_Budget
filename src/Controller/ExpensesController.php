@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Expenses;
+
 use App\Service\CreateExpenses;
 use App\Service\EditExpenses;
 use App\Service\DeleteExpenses;
@@ -41,8 +43,7 @@ class ExpensesController extends AbstractController
     * @Route("/expenses", name="expenses")
     */
     public function viewExpenses(){
-        $user = $this->getUser();
-        $expenses = $this->viewExpenses->viewExpenses($user);
+        $expenses = $this->getUser()->getExpenses();
         return $this->render('main/expenses/expenses.html.twig',[
             'expenses' => $expenses,
         ]);

@@ -43,8 +43,7 @@ class FixedExpensesController extends AbstractController
     */
     public function viewFixedExpenses()
     {
-        $user = $this->getUser();
-        $fixed_expenses = $this->viewFixedExpenses->viewFixedExpenses($user);
+        $fixed_expenses = $this->getUser()->getFixedExpenses();
         return $this->render('main/fixedexpenses/fixedexpenses.html.twig',[
             'fixed_expenses' => $fixed_expenses,
         ]);

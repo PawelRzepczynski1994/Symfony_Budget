@@ -22,7 +22,7 @@ class CategoryRepository extends ServiceEntityRepository
     public function findbyUserId($userId)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.id_user = :userId')
+            ->andWhere('c.user_id = :userId')
             ->setParameter('userId',$userId)
             ->getQuery()
             ->getResult();

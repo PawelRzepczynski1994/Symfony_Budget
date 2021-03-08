@@ -24,9 +24,9 @@
         <th scope="row">{{fixed_expenses.id}}</th>
         <td>{{fixed_expenses.name}}</td>
         <td>{{fixed_expenses.description}}</td>
-        <td>{{fixed_expenses.cname}}</td>
-        <td>{{fixed_expenses.pename}}</td>
-        <td>{{fixed_expenses.wname}}</td>
+        <td>{{fixed_expenses.category.name}}</td>
+        <td>{{fixed_expenses.placeexpenses.name}}</td>
+        <td>{{fixed_expenses.wallets.name}}</td>
         <td>{{fixed_expenses.amount}}</td>
             <td><a href="/editfixed_expenses/{{fixed_expenses.id}}">Edytuj</a> <a href="/deletefixed_expenses/{{fixed_expenses.id}}">Usuń</a></td>
         </tr>

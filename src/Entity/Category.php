@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,34 +18,42 @@ class Category
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $id_parent_category;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_user;
-
-    /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="category.name.not_blank")
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 50,
+     *     minMessage = "category.name.min_lenght",
+     *     maxMessage = "category.name.max_lenght"
+     * )
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=FixedExpenses::class, mappedBy="id_category")
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="categories")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $id_fixedExpenses;
+    private $user;
 
-    public function __construct(int $id_user,string $name)
+    /**
+     * @ORM\OneToMany(targetEntity=Expenses::class, mappedBy="category")
+     */
+    private $expenses;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FixedExpenses::class, mappedBy="category")
+     */
+    private $fixedExpenses;
+
+    public function __construct($id_user,string $name)
     {
-        $this->user_id = $id_user;
+        $this->user = $id_user;
         $this->name = $name;
-        $this->id_fixedExpenses = new ArrayCollection();
+        $this->expenses = new ArrayCollection();
+        $this->fixedExpenses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,56 +61,87 @@ class Category
         return $this->id;
     }
 
-    public function getIdParentCategory(): ?int
-    {
-        return $this->id_parent_category;
-    }
-
-    public function setIdParentCategory(?int $id_parent_category): self
-    {
-        $this->id_parent_category = $id_parent_category;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return Collection|FixedExpenses[]
-     */
-    public function getIdFixedExpenses(): Collection
+    public function setName(string $name): self
     {
-        return $this->id_fixedExpenses;
+        $this->name = $name;
+
+        return $this;
     }
 
-    public function addIdFixedExpense(FixedExpenses $idFixedExpense): self
+    public function getUser(): ?users
     {
-        if (!$this->id_fixedExpenses->contains($idFixedExpense)) {
-            $this->id_fixedExpenses[] = $idFixedExpense;
-            $idFixedExpense->setIdCategory($this);
+        return $this->user;
+    }
+
+    public function setUser(?users $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Expenses[]
+     */
+    public function getExpenses(): Collection
+    {
+        return $this->expenses;
+    }
+
+    public function addExpense(Expenses $expense): self
+    {
+        if (!$this->expenses->contains($expense)) {
+            $this->expenses[] = $expense;
+            $expense->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeIdFixedExpense(FixedExpenses $idFixedExpense): self
+    public function removeExpense(Expenses $expense): self
     {
-        if ($this->id_fixedExpenses->removeElement($idFixedExpense)) {
+        if ($this->expenses->removeElement($expense)) {
             // set the owning side to null (unless already changed)
-            if ($idFixedExpense->getIdCategory() === $this) {
-                $idFixedExpense->setIdCategory(null);
+            if ($expense->getCategory() === $this) {
+                $expense->setCategory(null);
             }
         }
 
         return $this;
     }
 
+    /**
+     * @return Collection|FixedExpenses[]
+     */
+    public function getFixedExpenses(): Collection
+    {
+        return $this->fixedExpenses;
+    }
+
+    public function addFixedExpense(FixedExpenses $fixedExpense): self
+    {
+        if (!$this->fixedExpenses->contains($fixedExpense)) {
+            $this->fixedExpenses[] = $fixedExpense;
+            $fixedExpense->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFixedExpense(FixedExpenses $fixedExpense): self
+    {
+        if ($this->fixedExpenses->removeElement($fixedExpense)) {
+            // set the owning side to null (unless already changed)
+            if ($fixedExpense->getCategory() === $this) {
+                $fixedExpense->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
 }

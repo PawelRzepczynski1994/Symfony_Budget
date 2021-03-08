@@ -19,25 +19,21 @@ class EditExpensesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         $builder
-            ->add('id_category',EntityType::class,[
+            ->add('category',EntityType::class,[
                 'class' => Category::class,
                 'choice_value' => 'id',
                 'choice_label' => function($category){
-                    if($category->getIdUser() == $this->getUser()){
                         return $category ? strtoupper($category->getName()) : '';
-                    }else{
-                        return '';
-                    }
                 },
                 'choice_attr' => function($category) use ($options){
                     $selected = false;
-                    if($category->getId() == $options["data"]->getIdCategory()) {
+                    if($category == $options["data"]->getCategory()) {
                         $selected = true;
                     }
                     return ['selected' => $selected];
                 },
             ])
-            ->add('id_place_expenses',EntityType::class,[
+            ->add('place_expenses',EntityType::class,[
                 'class' => PlaceExpenses::class,
                 'choice_value' => 'id',
                 'choice_label' => function($placeExpenses){
@@ -45,13 +41,13 @@ class EditExpensesType extends AbstractType
                 },
                 'choice_attr' => function($placeExpenses) use ($options){
                     $selected = false;
-                    if($placeExpenses->getId() == $options["data"]->getIdPlaceExpenses()) {
+                    if($placeExpenses == $options["data"]->getPlaceExpenses()) {
                         $selected = true;
                     }
                     return ['selected' => $selected];
                 },
             ])
-            ->add('id_wallet',EntityType::class,[
+            ->add('wallets',EntityType::class,[
                 'class' => Wallets::class,
                 'choice_value' => 'id',
                 'choice_label' => function($wallets){
@@ -59,7 +55,7 @@ class EditExpensesType extends AbstractType
                 },
                 'choice_attr' => function($wallets) use ($options){
                     $selected = false;
-                    if($wallets->getId() == $options["data"]->getIdWallet()) {
+                    if($wallets == $options["data"]->getWallets()) {
                         $selected = true;
                     }
                     return ['selected' => $selected];

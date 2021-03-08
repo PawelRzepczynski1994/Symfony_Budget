@@ -18,35 +18,24 @@ class SourceIncome
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_user;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="sourceIncome")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser(int $id_user): self
-    {
-        $this->id_user = $id_user;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -69,6 +58,18 @@ class SourceIncome
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -1,7 +1,6 @@
 <?php
 namespace App\Service;
 
-use App\Entity\Expenses;
 use App\Repository\ExpensesRepository;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -25,10 +24,10 @@ class EditExpenses
             $this->session->set('error','Nie możesz edytować tego wydatku!');
             return true;
         }
-        $check_expenses->setIdCategory($data->getIdCategory());
-        $check_expenses->setIdPlaceExpenses($data->getIdPlaceExpenses());
-        $check_expenses->setIdWallet($data->getIdWallet());
-        $check_expenses->setDate($data->getDate->gettimestamp());
+        $check_expenses->setCategory($data->getCategory());
+        $check_expenses->setPlaceExpenses($data->getPlaceExpenses());
+        $check_expenses->setWallets($data->getWallets());
+        $check_expenses->setDate($data->getDate());
         $check_expenses->setDescription($data->getDescription());
         $check_expenses->setAmount($data->getAmount());
         $this->expensesRepository->update();

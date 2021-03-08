@@ -28,23 +28,6 @@ class FixedExpensesRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-    
-    public function ViewFixedExpenses($value): array
-    {
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT fe.*,c.name as cname,pe.name as pename,w.name as wname
-                FROM `fixed_expenses` fe
-                INNER JOIN `category` c
-                INNER JOIN `place_expenses` pe
-                INNER JOIN `wallets` w
-                WHERE fe.`id_user` = :id_user AND
-                c.id = fe.id_category AND 
-                pe.id = fe.id_place_expenses AND
-                w.id = fe.id_wallet';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['id_user' => $value]);
-        return $stmt->fetchAllAssociative();
-    }
 
     public function save($object): void
     {

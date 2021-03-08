@@ -36,13 +36,12 @@ class CategoryController extends AbstractController
         $this->viewCategory = $viewCategory;
         $this->session = $session;
     }
-
     /**
     * @Route("/list_category", name="category")
     */
     public function viewCategory()
     {
-        $category = $this->viewCategory->viewCategory($this->getUser());
+        $category = $this->getUser()->getCategories();
         return $this->render('main/category.html.twig',[
             'category' => $category
         ]);
@@ -54,8 +53,9 @@ class CategoryController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $result = $this->createCategory->create($this->getUser(),$form->getData());
-            if($result)
+            if($result) {
                 return $this->redirectToRoute('info_category');
+            }
         }       
         return $this->render('main/createcategory/create_category.html.twig',[
             'form' => $form->createView(),

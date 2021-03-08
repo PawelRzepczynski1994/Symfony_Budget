@@ -40,8 +40,7 @@ class PlaceExpensesController extends AbstractController
     * @Route("/place_expenses", name="place_expenses")
     */
     public function viewPlacesExpenses(){
-        $user = $this->getUser();
-        $place_expenses = $this->viewPlacesExpenses->viewPlacesExpenses($user);
+        $place_expenses = $this->getUser()->getPlaceExpenses();
         return $this->render('main/placeexpenses/placeexpenses.html.twig',[
             'place_expenses' => $place_expenses
         ]);

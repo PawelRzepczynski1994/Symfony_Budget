@@ -27,11 +27,11 @@ class CreateFixedExpenses
         }
         $expense = new FixedExpenses();
         $expense->setName($data["name"]);
-        $expense->setIdUser($user->getId());
-        $expense->setIdCategory($data["category"]->getId());
-        $expense->setIdPlaceExpenses($data["place_expenses"]->getId());
-        $expense->setIdWallet($data["wallet"]->getId());
-        $expense->setFirstDate($data["first_date"]->getTimestamp());
+        $expense->setUser($user);
+        $expense->setCategory($data["category"]);
+        $expense->setPlaceExpenses($data["place_expenses"]);
+        $expense->setWallets($data["wallet"]);
+        $expense->setFirstDate($data["first_date"]);
         $expense->setFrequencyPayments($data["frequency_payments"]);
         $expense->setDescription($data["description"]);
         $expense->setAmount($data["amount"]);

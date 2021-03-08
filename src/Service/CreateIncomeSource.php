@@ -25,7 +25,7 @@ class CreateIncomeSource
             return true;
         }
         $source_income = new SourceIncome();
-        $source_income->setIdUser($user->getId());
+        $source_income->setUser($user);
         $source_income->setName($data["name"]);
         $source_income->setDescription($data["description"]);
         $this->sourceincomeRepository->save($source_income);

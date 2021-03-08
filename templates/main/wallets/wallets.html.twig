@@ -18,7 +18,7 @@
         <tr>
         <th scope="row">{{wallet.id}}</th>
         <td>{{wallet.name}}</td>
-        <td>{{wallet.getIdBankAccount}}</td>
+        <td>{{wallet.getBankAccount}}</td>
             <td><a href="/edit_wallet/{{ wallet.id }}">Edytuj</a><a href="/delete_wallet/{{ wallet.id }}"> Usuń</a></td>
         </tr>
 {% endfor %}

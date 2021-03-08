@@ -42,8 +42,7 @@ class WalletController extends AbstractController
     */
     public function viewWallets()
     {
-        $user = $this->getUser();
-        $wallets = $this->viewWallet->viewWallets($user);
+        $wallets = $this->getUser()->getWallets();
         return $this->render('main/wallets/wallets.html.twig',[
             'wallets' => $wallets,
         ]);

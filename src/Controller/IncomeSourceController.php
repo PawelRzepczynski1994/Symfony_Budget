@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\SourceIncome;
+
 use App\Service\CreateIncomeSource;
 use App\Service\EditIncomeSource;
 use App\Service\DeleteIncomeSource;
@@ -41,8 +43,7 @@ class IncomeSourceController extends AbstractController
     */
     public function viewIncomeSource()
     {
-        $user = $this->getUser();
-        $sourceincome = $this->viewIncomeSource->viewIncomeSource($user);
+        $sourceincome = $this->getUser()->getSourceIncome();
         return $this->render('main/incomesource/incomesource.html.twig',[
             'income_source' => $sourceincome
         ]);

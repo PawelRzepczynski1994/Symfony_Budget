@@ -20,11 +20,11 @@ class CreateExpenses{
     public function create($user,$data)
     {
         $expense = new Expenses();
-        $expense->setIdUser($user->getId());
-        $expense->setIdCategory($data["category"]->getId());
-        $expense->setIdPlaceExpenses($data["place_expenses"]->getId());
-        $expense->setIdWallet($data["wallet"]->getId());
-        $expense->setDate($data["date_start"]->getTimestamp());
+        $expense->setUser($user);
+        $expense->setCategory($data["category"]);
+        $expense->setPlaceExpenses($data["place_expenses"]);
+        $expense->setWallets($data["wallet"]);
+        $expense->setDate($data["date_start"]);
         $expense->setDescription($data["description"]);
         $expense->setAmount($data["amount"]);
         $this->expensesRepository->save($expense);

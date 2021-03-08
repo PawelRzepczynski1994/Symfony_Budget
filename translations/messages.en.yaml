@@ -1,0 +1,3 @@
+category.name.not_blank: Category name cannot be empty!
+category.name.min_lenght: Category name must be at least 3 characters long!
+category.name.max_lenght: Category name cannot exceed 50 characters!

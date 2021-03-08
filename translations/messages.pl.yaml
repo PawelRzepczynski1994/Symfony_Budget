@@ -1,0 +1,3 @@
+category.name.not_blank: Nazwa kategorii nie może być pusta!
+category.name.min_lenght: Nazwa kategorii musi mieć minimum 3 znaki!
+category.name.max_lenght: Nazwa kategorii nie może przekraczać 50 znaków!
