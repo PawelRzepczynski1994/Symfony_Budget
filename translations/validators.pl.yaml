@@ -1,0 +1,23 @@
+category.name.not_blank: Nazwa kategorii nie może być pusta!
+category.name.min_lenght: Nazwa kategorii musi mieć minimum 3 znaki!
+category.name.max_lenght: Nazwa kategorii nie może przekraczać 50 znaków!
+
+expenses.description.max_lenght: Opis wydatku może mieć maksymalnie 255 znaków!
+
+fixedexpenses.name.not_blank: Nazwa wydatku stałego nie może być pusta!
+fixedexpenses.name.min_lenght: Nazwa wydatku stałego musi mieć minimum 3 znaki!
+fixedexpenses.name.max_lenght: Nazwa wydatku stałego nie może przekraczać 50 znaków!
+
+fixedexpenses.description.max_lenght: Opis wydatku stałego może mieć maksymalnie 255 znaków!
+
+placeexpenses.name.not_blank: Nazwa miejsca wydatku nie może być pusta!
+placeexpenses.email.valid: Pole z adresem email jest niepoprawnie wypełnione!
+placeexpenses.description.max_lenght: Opis miejsca wydatku może mieć maksymalnie 255 znaków!
+
+sourceincome.name.not_blank: Nazwa źródła dochodu nie może być pusta!
+sourceincome.name.min_lenght: Nazwa źródła dochodu musi mieć minimum 3 znaki!
+sourceincome.name.max_lenght: Nazwa źródła dochodu może mieć maksymalnie 255 znaków!
+sourceincome.description.max_lenght: Opis źródła dochodu może mieć maksymalnie 255 znaków!
+
+wallets.name.not_blank: Nazwa portfela nie może być pusta!
+wallets.description.max_lenght: Opis portfela może mieć maksymalnie 255 znaków!

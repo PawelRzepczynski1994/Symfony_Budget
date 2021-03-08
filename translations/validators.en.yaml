@@ -1,0 +1,23 @@
+category.name.not_blank: Category name cannot be empty!
+category.name.min_lenght: Category name must be at least 3 characters long!
+category.name.max_lenght: Category name cannot exceed 50 characters!'
+
+expenses.description.max_lenght: Expense description can be up to 255 characters long!
+
+fixedexpenses.name.not_blank: The name of the fixed expense cannot be empty!
+fixedexpenses.name.min_lenght: The name of the fixed expense must be at least 3 characters long!
+fixedexpenses.name.max_lenght: The name of the fixed expense cannot exceed 50 characters!
+
+fixedexpenses.description.max_lenght: The description of a fixed expense can be up to 255 characters long!
+
+placeexpenses.name.not_blank: The name of the place of expenditure cannot be empty!
+placeexpenses.email.valid: The field with the email address is incorrectly filled!
+placeexpenses.description.max_lenght: The description of the place of expenditure can be up to 255 characters long!
+
+sourceincome.name.not_blank: The name of the source of income cannot be empty!
+sourceincome.name.min_lenght: The name of the source of income must be at least 3 characters long!
+sourceincome.name.max_lenght: The name of the source of income can be up to 255 characters!
+sourceincome.description.max_lenght: The description of the source of income can be up to 255 characters!
+
+wallets.name.not_blank: Wallet name cannot be empty!
+wallets.description.max_lenght: The wallet description can be up to 255 characters long!

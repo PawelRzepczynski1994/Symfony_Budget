@@ -1,3 +1,36 @@
-category.name.not_blank: Nazwa kategorii nie może być pusta!
-category.name.min_lenght: Nazwa kategorii musi mieć minimum 3 znaki!
-category.name.max_lenght: Nazwa kategorii nie może przekraczać 50 znaków!
+category.name.already: Posiadasz już taką kategorię!
+category.name.ready: Utworzyłeś nową kategorię!
+
+expenses.create.ready: Utworzyłeś nowy wydatek!
+expenses.delete.cant: Nie możesz skasować tego wydatku!
+expenses.delete.ready: Skasowałeś wybrany wydatek!
+expenses.edit.cant: Nie możesz edytować tego wydatku!
+expenses.edit.ready: Edytowałeś wybrany wydatek!
+
+fixedexpenses.create.already: Posiadasz juz taki wydatek stały!
+fixedexpenses.create.ready: Utworzyłeś nowy wydatek stały!
+fixedexpenses.delete.cant: Nie możesz skasować tego wydatku stałego!
+fixedexpenses.delete.ready: Wydatek stały został skasowany!
+fixedexpenses.edit.cant: Nie możesz edytować tego wydatku stałego!
+fixedexpenses.edit.ready: Zaktualizowałeś informację na temat wydatku stałego!
+
+incomesource.create.already: Posiadasz już takie źródło dochodu!
+incomesource.create.ready: Utworzyłeś nowe źródło dochodu!
+incomesource.delete.cant: Nie możesz skasować tego wydatku stałego!
+incomesource.delete.ready: Wydatek stały został skasowany!
+incomesource.edit.cant: Nie możesz edytować tego źródła dochodu!
+incomesource.edit.ready: Zaktualizowałeś informację o źródle dochodu!
+
+placesexpenses.create.already: Posiadasz już takie miejsce wydatków!
+placesexpenses.create.ready: Utworzyłeś nowe miejsce wydatków!
+placesexpenses.delete.cant: Nie możesz skasować tego miejsca wydatku!
+placesexpenses.delete.ready: Miejsce wydatku zostało skasowane!
+placesexpenses.edit.cant: Nie możesz edytować miejsca wydatków!
+placesexpenses.edit.ready: Zaktualizowałeś informacje o miejscach wydatków!
+
+wallet.create.already: Posiadasz już taki portfel!
+wallet.create.ready: Utworzyłeś nowy portfel!
+wallet.delete.cant: Nie możesz skasować tego portfela!
+wallet.delete.ready: Portfel został skasowany!
+wallet.edit.cant: Nie możesz edytować tego portfela!
+wallet.edit.ready: Zaktualizowałeś informację o portfelu!

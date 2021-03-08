@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\SourceIncomeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=SourceIncomeRepository::class)
@@ -19,11 +21,24 @@ class SourceIncome
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank ( message = "sourceincome.name.not_blank" )
+     * @Assert\Length
+     * (
+     *     min = 3,
+     *     max = 50,
+     *     minMessage = "sourceincome.name.min_lenght",
+     *     maxMessage = "sourceincome.name.max_lenght"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length
+     * (
+     *     max = 255,
+     *     maxMessage = "sourceincome.description.max_lenght"
+     * )
      */
     private $description;
 

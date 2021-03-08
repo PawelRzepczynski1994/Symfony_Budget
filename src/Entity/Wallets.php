@@ -22,11 +22,17 @@ class Wallets
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank ( message = "wallets.name.not_blank" )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length
+     * (
+     *      max = 255,
+     *      maxMessage = "wallets.description.max_lenght"
+     * )
      */
     private $description;
 

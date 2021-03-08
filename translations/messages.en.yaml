@@ -1,3 +1,36 @@
-category.name.not_blank: Category name cannot be empty!
-category.name.min_lenght: Category name must be at least 3 characters long!
-category.name.max_lenght: Category name cannot exceed 50 characters!
+category.name.already: You already have this category!
+category.name.ready: You have created a new category!
+
+expenses.create.ready: You have created a new expense!
+expenses.delete.cant: You cannot cancel this expense!
+expenses.delete.ready: You have deleted the selected expense!
+expenses.edit.cant: You cannot edit this expense!
+expenses.edit.ready: You have edited the selected expense!
+
+fixedexpenses.create.already: You already have such a fixed expense!
+fixedexpenses.create.ready: You have created a new fixed expense
+fixedexpenses.delete.cant: You cannot cancel this fixed expense!
+fixedexpenses.delete.ready: Fixed expense has been canceled!
+fixedexpenses.edit.cant: You cannot edit this fixed expense!
+fixedexpenses.edit.ready: You have updated the information on the fixed expense!
+
+incomesource.create.already: You already have such a source of income!
+incomesource.create.ready: You have created a new source of income!
+incomesource.delete.cant: You cannot cancel this fixed expense!
+incomesource.delete.ready: Fixed expense has been canceled!
+incomesource.edit.cant: You cannot edit this income source!
+incomesource.edit.ready: You have updated your source of income information!
+
+placesexpenses.create.already: You already own such a place of spending!
+placesexpenses.create.ready: You have created a new spending location!
+placesexpenses.delete.cant: You cannot cancel this spending slot!
+placesexpenses.delete.ready: The place of expense has been deleted!
+placesexpenses.edit.cant: You cannot edit the expense location!
+placesexpenses.edit.ready: You have updated the information about places of spending!
+
+wallet.create.already: You already have such a wallet!
+wallet.create.ready: You have created a new wallet!
+wallet.delete.cant: You cannot delete this wallet!
+wallet.delete.ready: The wallet has been deleted!
+wallet.edit.cant: You cannot edit this wallet!
+wallet.edit.ready: You have updated your wallet information!

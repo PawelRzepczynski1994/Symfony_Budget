@@ -1,23 +1,32 @@
 <?php
+
 namespace App\Service;
 
 use App\Entity\Expenses;
 use App\Repository\ExpensesRepository;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-class CreateExpenses{
+class CreateExpenses
+{
 
     private ExpensesRepository $expensesRepository;
     private SessionInterface $session;
-
-    public function __construct(ExpensesRepository $expensesRepository,SessionInterface $session)
+    private TranslatorInterface $translatorInterface;
+    
+    public function __construct
+    (
+        ExpensesRepository $expensesRepository,
+        SessionInterface $session,
+        TranslatorInterface $translatorInterface
+    )
     {
         $this->expensesRepository = $expensesRepository;
         $this->session = $session;
+        $this->translatorInterface = $translatorInterface;
     }
 
-    public function create($user,$data)
+    public function create($user, $data)
     {
         $expense = new Expenses();
         $expense->setUser($user);
@@ -28,7 +37,7 @@ class CreateExpenses{
         $expense->setDescription($data["description"]);
         $expense->setAmount($data["amount"]);
         $this->expensesRepository->save($expense);
-        $this->session->set('error', 'Utworzyłeś nowy wydatek!');
+        $this->session->set('error', $this->translatorInterface->trans('expenses.create.ready'));
         return true;
     }
 }

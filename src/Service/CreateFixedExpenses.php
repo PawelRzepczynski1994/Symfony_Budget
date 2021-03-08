@@ -1,31 +1,48 @@
 <?php
+
 namespace App\Service;
 
 use App\Entity\FixedExpenses;
 use App\Repository\FixedExpensesRepository;
-
+use App\Utils\ErrorFormatter;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 class CreateFixedExpenses
 {
     private FixedExpensesRepository $fixedexpensesRepository;
     private SessionInterface $session;
+    private TranslatorInterface $translatorInterface;
+    private ErrorFormatter $errorFormatter;
 
-    public function __construct(FixedExpensesRepository $fixedexpensesRepository,SessionInterface $session)
+    public function __construct
+    (
+        FixedExpensesRepository $fixedexpensesRepository,
+        SessionInterface $session,
+        TranslatorInterface $translatorInterface,
+        ErrorFormatter $errorFormatter
+    )
     {
         $this->fixedexpensesRepository = $fixedexpensesRepository;
         $this->session = $session;
+        $this->translatorInterface = $translatorInterface;
+        $this->errorFormatter = $errorFormatter;
     }
 
-    public function create($user,$data)
+    public function create($user, $data)
     {
         $fixedexpenses = $this->fixedexpensesRepository->countNameFixedExpenses($data["name"]);
-        if($fixedexpenses)
-        {
-            $this->session->set('error','Posiadasz juz taki wydatek stały!');
+        if ($fixedexpenses) {
+            $this->session->set('error', $this->translatorInterface->trans('fixedexpenses.create.already'));
             return true;
         }
         $expense = new FixedExpenses();
+        $errors = $this->validatorInterface->validate($expense);
+        if ($errors->count() > 0){
+            $this->session->set('error', $this->errorFormatter->formatError($errors));
+            return true;
+        }
         $expense->setName($data["name"]);
         $expense->setUser($user);
         $expense->setCategory($data["category"]);
@@ -37,7 +54,7 @@ class CreateFixedExpenses
         $expense->setAmount($data["amount"]);
         $expense->setActive($data["active"]);
         $this->fixedexpensesRepository->save($expense);
-        $this->session->set('error','Utworzyłeś nowy wydatek stały: '.$data["name"]);
+        $this->session->set('error', $this->translatorInterface->trans('fixedexpenses.create.ready'));
         return true;
     }
 }

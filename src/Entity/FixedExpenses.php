@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FixedExpensesRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,6 +20,14 @@ class FixedExpenses
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "fixedexpenses.name.not_blank")
+     * @Assert\Length
+     * (
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "fixedexpenses.name.min_lenght",
+     *      maxMessage = "fixedexpenses.name.max_lenght"
+     * )
      */
     private $name;
 
@@ -34,6 +43,10 @@ class FixedExpenses
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "fixedexpenses.description.max_lenght"
+     * )
      */
     private $description;
 

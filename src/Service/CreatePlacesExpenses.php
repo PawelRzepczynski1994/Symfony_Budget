@@ -4,26 +4,32 @@ namespace App\Service;
 
 use App\Entity\PlaceExpenses;
 use App\Repository\PlaceExpensesRepository;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CreatePlacesExpenses
 {
     private PlaceExpensesRepository $placeexpensesRepository;
     private SessionInterface $session;
+    private TranslatorInterface $translationInterface;
 
-    public function __construct(PlaceExpensesRepository $placeexpensesRepository,SessionInterface $session)
+    public function __construct
+    (
+        PlaceExpensesRepository $placeexpensesRepository,
+        SessionInterface $session,
+        TranslatorInterface $translationInterface
+    )
     {
         $this->placeexpensesRepository = $placeexpensesRepository;
         $this->session = $session;
+        $this->translationInterface = $translationInterface;
     }
 
-    public function create($user,$data)
+    public function create($user, $data)
     {
         $placeexpenses = $this->placeexpensesRepository->countNamePlace($data['name']);
-        if($placeexpenses != 0)
-        {
-            $this->session->get('error','Posiadasz już takie miejsce wydatków!');
+        if ($placeexpenses != 0) {
+            $this->session->get('error', $this->translationInterface->trans('placesexpenses.create.already'));
             return true;
         }
         $new_place = new PlaceExpenses();
@@ -35,7 +41,7 @@ class CreatePlacesExpenses
         $new_place->setEmail($data["email"]);
         $new_place->setDescription($data["description"]);
         $this->placeexpensesRepository->save($new_place);
-        $this->session->set('error', 'Utworzyłeś nowe miejsce wydatków:'.$data["name"]);
+        $this->session->set('error', $this->translationInterface->trans('placesexpenses.create.ready'));
         return true;
     }
 }

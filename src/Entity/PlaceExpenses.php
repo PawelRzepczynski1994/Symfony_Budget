@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PlaceExpensesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +22,7 @@ class PlaceExpenses
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank (message="placeexpenses.name.not_blank")
      */
     private $name;
 
@@ -41,11 +43,16 @@ class PlaceExpenses
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email( message = "placeexpenses.email.valid" )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length (
+     *      max = 255,
+     *      maxMessage="placeexpenses.description.max_lenght"
+     * )
      */
     private $description;
 
