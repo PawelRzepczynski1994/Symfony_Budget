@@ -3,6 +3,10 @@
     Brak kategorii!
   {% endif %}
   {% for category in category %}
-    <li class="nav-item"><a class="nav-link" href="">{{ category.name|e }}</a></li>
+    <li class="nav-item" style="padding: .5em 1em;">
+        <a href="/open/{{ category.id }}">{{ category.name|e }}</a>&nbsp;
+        <a href="/delete_category/{{ category.id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;
+        <a href="/edit_category/{{ category.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+    </li>
   {% endfor %}
 </ul>

@@ -7,7 +7,6 @@ register:
 main:
     path: /main
     controller: App\Controller\MainController::index
-
 create_category:
     path: /create_category
     controller: App\Controller\CategoryController::addCategory
@@ -88,3 +87,7 @@ edit_expenses:
 delete_expenses:
     path: /delete_expenses/{id}
     controller: App\Controller\ExpensesController::deleteExpenses
+
+open:
+    path: /open/{id}
+    controller: App\Controller\OpenController::viewCategory

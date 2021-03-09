@@ -18,21 +18,17 @@ class ExpensesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Expenses::class);
     }
-    public function ViewExpenses($value): array
+
+    public function ViewInformation($user_id,$value): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT fe.*,c.name as cname,pe.name as pename,w.name as wname
-                FROM `expenses` fe
-                INNER JOIN `category` c
-                INNER JOIN `place_expenses` pe
-                INNER JOIN `wallets` w
-                WHERE fe.`id_user` = :id_user AND
-                c.id = fe.id_category AND 
-                pe.id = fe.id_place_expenses AND
-                w.id = fe.id_wallet';
+        $sql = "SELECT `description`,`amount`,DATE_FORMAT(`date`,'%Y-%m-%d') AS `formatted_date` FROM `expenses` 
+                WHERE `user_id` = :user_id
+                AND `category_id` = :category_id";
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['id_user' => $value]);
+        $stmt->execute(['user_id' => $user_id,'category_id' => $value]);
         return $stmt->fetchAllAssociative();
+
     }
 
     public function save($object): void

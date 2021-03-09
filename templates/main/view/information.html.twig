@@ -1,0 +1,38 @@
+{% include 'main/header.html.twig' %}
+
+<div class="col-md-9 col-lg-10 main">
+    <!--MAIN -->
+    <div class="card-block">
+        <h4 class="card-title">Wydatki</h4>
+        <p class="card-text">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Kwota</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if information is empty %}
+                <tr>
+                    <td colspan="3">Brak wydatków w tej kategorii</td>
+
+                </tr>
+            {% else %}
+                {% for expenses in information %}
+                    <tr>
+                        <td>{{expenses.formatted_date}}</td>
+                        <td>{{expenses.description}}</td>
+                        <td>{{expenses.amount}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+        </p>
+    </div>
+
+</div>
+{% include 'main/footer.html.twig' %}

@@ -1,18 +1,20 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Category;
+
 use App\Service\CreateCategory;
 use App\Service\EditCategory;
 use App\Service\DeleteCategory;
 use App\Service\ViewCategory;
 
 use App\Form\Type\CreateCategoryType;
+use App\Form\Type\EditCategoryType;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 
 class CategoryController extends AbstractController
 {
@@ -57,19 +59,30 @@ class CategoryController extends AbstractController
                 return $this->redirectToRoute('info_category');
             }
         }       
-        return $this->render('main/createcategory/create_category.html.twig',[
+        return $this->render('main/category/create_category.html.twig',[
             'form' => $form->createView(),
         ]);
     }
 
-    public function editCategory()
+    public function editCategory(Request $request,Category $id)
     {
-
+        $form = $this->createForm(EditCategoryType::class,$id)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $result = $this->editCategory->edit($this->getUser(),$id,$form->getData());
+            if($result)
+                return $this->redirectToRoute('info_category');
+        }
+        return $this->render('main/category/editcategory.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 
-    public function deleteCategory()
+    public function deleteCategory($id)
     {
-
+        $id = (int)$id;
+        $this->deleteCategory->delete($this->getUser(),$id);
+        return $this->redirectToRoute('info_category');
     }
 
     /**
@@ -78,7 +91,7 @@ class CategoryController extends AbstractController
     public function InfoCategory(SessionInterface $session)
     {
         $error = $this->session->get('error');
-        return $this->render('main/createcategory/error.html.twig',[
+        return $this->render('main/category/error.html.twig',[
             'error_log' => $error,
         ]);
     }
